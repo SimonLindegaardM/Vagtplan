@@ -25,3 +25,4 @@ namespace VagtplanWebService
         public virtual ICollection<Afdelingsplan> Afdelingsplans { get; set; }
     }
 }
+//Gleb TEst 1
