@@ -19,8 +19,9 @@ namespace VagtplanWebService
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int VagtID { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime Dato { get; set; }
+        public DateTime DatoFra { get; set; }
+
+        public DateTime DatoTil { get; set; }
 
         public int VirksomhedsID { get; set; }
 

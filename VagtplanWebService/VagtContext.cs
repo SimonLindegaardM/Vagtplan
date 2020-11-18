@@ -8,7 +8,7 @@ namespace VagtplanWebService
     public partial class VagtContext : DbContext
     {
         public VagtContext()
-            : base("name=VagtContext2")
+            : base("name=VagtContext3")
         {
             base.Configuration.ProxyCreationEnabled = false;
         }
@@ -52,4 +52,4 @@ namespace VagtplanWebService
                 .WillCascadeOnDelete(false);
         }
     }
-} /*TEst*/
+}
