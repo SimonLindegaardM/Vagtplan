@@ -12,7 +12,7 @@ namespace VagtplanUWP.Database
     public static class DataHelper
     {
         private static string ConnectionString = "Data Source=andensemesterproject.database.windows.net;Initial Catalog=andensemesterproject;User ID=simonlindegaard;Password=Datamatiker!;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        
+
         public static ObservableCollection<Afdelingsplan> GetAfdelingsplan()
         {
             const string query = "select Medarbejdersplan.MedarbejderID, VagtID, Dato, VirksomhedsID from Afdelingsplan inner join Medarbejdersplan on Afdelingsplan.MedarbejderID = Medarbejdersplan.MedarbejderID";
@@ -88,7 +88,85 @@ namespace VagtplanUWP.Database
             }
             return null;
         }
+        public static ObservableCollection<Vagtplan> GetVagtPlan()
+        {
+            const string query = "select VagtID, DatoFra, DatoTil from Vagtplan";
+            var vagtplan = new ObservableCollection<Vagtplan>();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    connection.Open();
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        using (SqlCommand cmd = connection.CreateCommand())
+                        {
+                            cmd.CommandText = query;
+                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    var vp = new Vagtplan();
+                                    vp.VagtID = reader.GetInt32(0);
+                                    vp.dateFrom = reader.GetDateTime(1);
+                                    vp.dateTo = reader.GetDateTime(2);
+                                    vagtplan.Add(vp);
+
+                                }
+                            }
+                        }
+                    }
+                }
+                return vagtplan;
+            }
+            catch (Exception eSql)
+            {
+                Debug.WriteLine("Exception: " + eSql.Message);
+            }
+            return null;
+
+        }
+        public static ObservableCollection<Virksomhed> GetVirksomhed()
+        {
+            const string query = "select VirksomhedsID, Navn, Adresse, Telefon from Virksomhed";
+            var vagtplan = new ObservableCollection<Virksomhed>();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    connection.Open();
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        using (SqlCommand cmd = connection.CreateCommand())
+                        {
+                            cmd.CommandText = query;
+                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    var vp = new Virksomhed();
+                                    vp.VirksomhedsID = reader.GetInt32(0);
+                                    vp.Navn = reader.GetString(1);
+                                    vp.Adresse = reader.GetString(2);
+                                    vp.Nummber = reader.GetInt32(3);
+                                    vagtplan.Add(vp);
+
+                                }
+                            }
+                        }
+                    }
+                }
+                return vagtplan;
+            }
+            catch (Exception eSql)
+            {
+                Debug.WriteLine("Exception: " + eSql.Message);
+            }
+            return null;
+
+        }
 
 
     }
+
 }
