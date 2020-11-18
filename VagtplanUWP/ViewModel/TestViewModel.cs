@@ -12,10 +12,12 @@ namespace VagtplanUWP.ViewModel
     {
 
         public ObservableCollection<Afdelingsplan> kage { get; set; }
+        public ObservableCollection<Medarbejdersplan> kage2 { get; set; }
         
         public TestViewModel()
         {
-            kage = DataHelper.GetVagt();
+            kage = DataHelper.GetAfdelingsplan();
+            kage2 = DataHelper.GetMedarbejdersplan();
         }
 
     }

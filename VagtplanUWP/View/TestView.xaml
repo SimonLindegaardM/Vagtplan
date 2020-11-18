@@ -12,15 +12,26 @@
     <Page.DataContext>
         <viewmodel:TestViewModel/>
     </Page.DataContext>
+    <Grid>
     <ListView ItemsSource="{Binding kage}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <StackPanel>
                     <TextBlock Text="{Binding MedarbejderID}" FontSize="100"/>
-                    
+                    <TextBlock Text="{Binding VagtID}" FontSize="100"/>
                 </StackPanel>
-                
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
+        <ListView ItemsSource="{Binding kage2}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Adresse}" FontSize="100"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
+    </Grid>
 </Page>

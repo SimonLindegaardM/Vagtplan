@@ -1,0 +1,1 @@
+﻿select Medarbejdersplan.MedarbejderID, VagtID, Dato, VirksomhedsID from Afdelingsplan inner join Medarbejdersplan on Afdelingsplan.MedarbejderID = Medarbejdersplan.MedarbejderID
